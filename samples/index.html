@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />    
+    <title></title>
+    
+    <script src="../src/CodeMirror/codemirror.js"></script>
+    <link rel="stylesheet" href="../src/CodeMirror/codemirror.css" />
+    <link rel="stylesheet" href="../src/css/typescript.theme.css" />
+    <script src="../src/js/typescript.mode.js"></script>
+    
+    <style>
+      body, html {
+        width: 100%;
+        height: 100%;
+        font-size: 16pt;
+      }
+      
+      .CodeMirror {
+        width: 100%;
+        height: 100%;
+      }
+
+      .CodeMirror, .CodeMirroor-scrollbar,
+      .CodeMirror-scroll, .CodeMirror-gutter, .CodeMirror-lines {
+        height: 100%;
+      }
+
+
+      .CodeMirror {
+        border: thin solid black;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <script src="../src/js/typebox.js"></script>
+    <script>
+      window.addEventListener("load", function () {
+        var tb = new TypeBox.Editor("txtCode");
+      });
+    </script>
+  
+    <textarea id="txtCode">
+// This file should demonstrate
+// the syntax highlighting extension for TypeScript.
+
+interface SimpleInterface {
+  a: number;
+};
+
+class TestClass {
+  helloStr: string;
+
+  constructor (public worldStr: string) {
+  }
+
+  sayHelloWorld(): string {
+    return this.helloStr + this.worldStr;
+  }
+
+  static isMagic(str: string): bool;
+  static isMagic(nr: number): bool;
+  static isMagic(strOrNr: any): bool {
+    if (typeof strOrNr == "string") {
+      return (strOrNr == "Hello World!");
+    }
+    return (strOrNr == 42);
+  }
+}
+
+class TestChildClass extends TestClass {
+  constructor (public worldStr: string) {
+    super("Night");
+  }
+}
+
+class TestClass2 {
+}
+
+(function () {
+
+  var anyType: any;
+  var nrType: number;
+  var boolType: bool;
+  var strType: string;
+  var infType: SimpleInterface;
+  
+
+  var anyTypeObject: { a; b; };
+
+  function anyRetFunc(): any {
+  }
+
+  function anyParamFunc(x: any) {
+  }
+
+})();
+
+(function () {
+  function addClosure(y: number): (x: number) => number {
+    return function (x) {
+      return x + y;
+    }
+  }
+  addClosure(4)(5); // Should return 9 by the way
+
+})();
+    </textarea>
+  </body>
+</html>
